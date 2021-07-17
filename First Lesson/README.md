@@ -42,13 +42,17 @@ In the update method, we need to check if the move controls are pressed down.
 
 ```
 
-// Add this to void Start()
+// Add this to void Update()
 
-        float horizontal = Input.GetAxis("Horizontal"); // returns a value between -1 and 1 depending on if a or d is pressed down
-        float vertical = Input.GetAxis("Vertical"); // returns a value between -1 and 1 depending on if w or s is pressed down
+float horizontal = Input.GetAxis("Horizontal"); // returns a value between -1 and 1 depending on if a or d is pressed down
+float vertical = Input.GetAxis("Vertical"); // returns a value between -1 and 1 depending on if w or s is pressed down
 
-        rb.AddForce(horizontal, 0, 0);
-        rb.AddForce(0, 0, vertical);
+rb.AddForce(horizontal, 0, 0);
+rb.AddForce(0, 0, vertical);
 ```
 
+Now, if we run our game, the capsule will keep rolling on its head when we press the move keys! To fix this, we need to lock rotation on the rigid body component in the right inspector to the Y axis only as follows.
+
+
+![Image of Yaktocat](https://i.imgur.com/SQmQc83.png)
 

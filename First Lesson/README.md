@@ -163,3 +163,10 @@ public class MouseLook : MonoBehaviour
 
 ```
 
+# Section 3 - Crowbar Pickup
+
+Create a new prefab and in the prefab editor, drag in the crowbar tool and a transparent capsule around it for looks.
+
+![Image of Yaktocat](https://imgur.com/67MLLBz)
+
+

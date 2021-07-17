@@ -35,7 +35,12 @@ In the start method, we need to access the rigid body component we added in the 
 ```
 // Add this to void Start()
 
-rb = GetComponent<Rigidbody>();
+// Turn off the cursor
+Cursor.visible = false;
+Cursor.lockState = CursorLockMode.Locked;
+
+
+rb = GetComponent<Rigidbody>(); // Get access to the rigid body of the player capsule
 ```
 
 In the update method, we need to check if the move controls are pressed down.

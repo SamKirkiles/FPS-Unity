@@ -41,7 +41,7 @@ rb = GetComponent<Rigidbody>();
 In the update method, we need to check if the move controls are pressed down.
 
 ```
-```
+
 // Add this to void Start()
 
         float horizontal = Input.GetAxis("Horizontal"); // returns a value between -1 and 1 depending on if a or d is pressed down
@@ -51,4 +51,4 @@ In the update method, we need to check if the move controls are pressed down.
         rb.AddForce(0, 0, vertical);
 ```
 
-```
+

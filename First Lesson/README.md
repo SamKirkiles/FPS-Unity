@@ -72,5 +72,14 @@ gameObject.transform.Rotate(-mouse_vertical, 0, 0);
 
 ```
 
+We have a major issue though, we can rotate the mouse all the way around 360. This is certainly not good. To fix this, we need to clam the values of the mouse so that it can't rotate more than 90 degrees up or down. To fix this, we will use Euler Angles
+
+```
+        float mouse_vertical = Input.GetAxis("Mouse Y");
+
+        float x_rotation = gameObject.transform.localEulerAngles.x;
+
+        gameObject.transform.localEulerAngles = new Vector3(x_rotation - mouse_vertical, 0, 0);
+```
 
 

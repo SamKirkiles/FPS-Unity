@@ -1,4 +1,4 @@
-# Creating a first person player 
+# Section 1 - First Person Player Movement and Mouse Look 
 
 Add a capsule to the scene and attach a Camera as a child. In the inspector, add a rigid body component.
 
@@ -60,4 +60,17 @@ Now, if we run our game, the capsule will keep rolling on its head when we press
 
 
 ![Image of Yaktocat](https://i.imgur.com/SQmQc83.png)
+
+Create a new script on the camera called MouseLook. We want moving the mouse up and down to make the player look up and down. To do this we need to get the mouse data and apply it as a rotation to the camera. 
+
+
+```
+// Add to the Update method of MouseLook.cs
+
+float mouse_vertical = Input.GetAxis("Mouse Y");
+gameObject.transform.Rotate(-mouse_vertical, 0, 0);
+
+```
+
+
 

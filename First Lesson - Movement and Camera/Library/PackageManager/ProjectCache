@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637621360222003415
-    m_Hash: 2003956774
+      ticks: 637621366940184787
+    m_Hash: 248146433
   m_LockFileStatus:
     m_FilePath: C:/Users/samki/Documents/FPS-Unity/First Lesson - Movement and Camera/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637621360284529019
-    m_Hash: 2889151785
+      ticks: 637621366940184787
+    m_Hash: 2564801494
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:

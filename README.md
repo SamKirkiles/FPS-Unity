@@ -1,5 +1,3 @@
 # FPS-Unity
 
-"""
-git lfs install
-"""
+A FPS game by Jinn and Sam.  

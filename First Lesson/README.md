@@ -22,8 +22,8 @@ public class PlayerMove : MonoBehaviour
       // Start code here..
     }
 
-    // Update is called once per frame
-    void Update()
+    // FixedUpdate is called once per frame
+    void FixedUpdate()
     {
       // Update code here...
     }
@@ -47,13 +47,12 @@ In the update method, we need to check if the move controls are pressed down.
 
 ```
 
-// Add this to void Update()
+// Add this to void FixedUpdate()
 
 float horizontal = Input.GetAxis("Horizontal"); // returns a value between -1 and 1 depending on if a or d is pressed down
 float vertical = Input.GetAxis("Vertical"); // returns a value between -1 and 1 depending on if w or s is pressed down
 
-rb.AddForce(horizontal, 0, 0);
-rb.AddForce(0, 0, vertical);
+rb.AddRelativeForce(horizontal, 0, vertical);
 ```
 
 Now, if we run our game, the capsule will keep rolling on its head when we press the move keys! To fix this, we need to lock rotation on the rigid body component in the right inspector to the Y axis only as follows.
@@ -75,11 +74,11 @@ gameObject.transform.Rotate(-mouse_vertical, 0, 0);
 We have a major issue though, we can rotate the mouse all the way around 360. This is certainly not good. To fix this, we need to clam the values of the mouse so that it can't rotate more than 90 degrees up or down. To fix this, we will clamp the value of our rotation between 90 degrees up and down.
 
 ```
-        float mouse_vertical = Input.GetAxis("Mouse Y");
+float mouse_vertical = Input.GetAxis("Mouse Y");
 
-        myrotation = Mathf.Clamp(myrotation - mouse_vertical, -90f, 90f);
+myrotation = Mathf.Clamp(myrotation - mouse_vertical, -90f, 90f);
 
-        gameObject.transform.localRotation = Quaternion.Euler(myrotation, 0f, 0f);
+gameObject.transform.localRotation = Quaternion.Euler(myrotation, 0f, 0f);
 ```
 
 # Section 2 - Fixing the Timing Issues
@@ -109,21 +108,23 @@ public class PlayerMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float horizontal = Input.GetAxis("Horizontal"); // returns a value between -1 and 1 depending on if a or d is pressed down
         float vertical = Input.GetAxis("Vertical"); // returns a value between -1 and 1 depending on if w or s is pressed down
 
-        rb.AddRelativeForce(horizontal * Time.deltaTime * movementSpeed, 0, 0);
-        rb.AddRelativeForce(0, 0, vertical * Time.deltaTime * movementSpeed);
+        rb.AddRelativeForce(horizontal * Time.deltaTime * movementSpeed, 0, vertical * Time.deltaTime * movementSpeed);
+    }
 
+    void LateUpdate()
+    {
         // Horizontal Look
-
-        float mouse_horizontal = Input.GetAxis("Mouse X");
-        gameObject.transform.Rotate(0,mouse_horizontal,0);
+        float mouse_horizontal = Input.GetAxis("Mouse X") * Time.deltaTime * 100;
+        gameObject.transform.Rotate(0, mouse_horizontal, 0);
 
 
     }
+
 }
 
 ```
@@ -146,20 +147,26 @@ public class MouseLook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         float mouse_vertical = Input.GetAxis("Mouse Y") * Time.deltaTime * mouseSensitivity;
 
         myrotation = Mathf.Clamp(myrotation - mouse_vertical, -90f, 90f);
 
         gameObject.transform.localRotation = Quaternion.Euler(myrotation, 0f, 0f);
-
     }
+
 }
 
 ```
+
+# Section 3 - Crowbar Pickup
+
+Create a new prefab and in the prefab editor, drag in the crowbar tool and a transparent capsule around it for looks.
+
+![Image of Yaktocat](https://imgur.com/67MLLBz.png)
+
 

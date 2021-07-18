@@ -18,19 +18,21 @@ public class PlayerMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float horizontal = Input.GetAxis("Horizontal"); // returns a value between -1 and 1 depending on if a or d is pressed down
         float vertical = Input.GetAxis("Vertical"); // returns a value between -1 and 1 depending on if w or s is pressed down
 
-        rb.AddRelativeForce(horizontal * Time.deltaTime * movementSpeed, 0, 0);
-        rb.AddRelativeForce(0, 0, vertical * Time.deltaTime * movementSpeed);
+        rb.AddRelativeForce(horizontal * Time.deltaTime * movementSpeed, 0, vertical * Time.deltaTime * movementSpeed);
+    }
 
+    void LateUpdate()
+    {
         // Horizontal Look
-
-        float mouse_horizontal = Input.GetAxis("Mouse X");
-        gameObject.transform.Rotate(0,mouse_horizontal,0);
+        float mouse_horizontal = Input.GetAxis("Mouse X") * Time.deltaTime * 100;
+        gameObject.transform.Rotate(0, mouse_horizontal, 0);
 
 
     }
+
 }
